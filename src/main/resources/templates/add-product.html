@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/layout :: header}"></head>
+  <body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="container mt-4" style="max-width: 600px">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">
+          <h3 class="mb-0">Add New Inventory Item</h3>
+        </div>
+        <div class="card-body">
+          <form
+            th:action="@{/inventory/save}"
+            th:object="${product}"
+            method="post"
+          >
+            <div class="mb-3">
+              <label class="form-label">Product Name</label>
+              <input
+                type="text"
+                th:field="*{name}"
+                class="form-control"
+                th:errorclass="is-invalid"
+              />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}"
+              ></div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Brand</label>
+              <input
+                type="text"
+                th:field="*{brand}"
+                class="form-control"
+                th:errorclass="is-invalid"
+              />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('brand')}"
+                th:errors="*{brand}"
+              ></div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Price ($)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  th:field="*{price}"
+                  class="form-control"
+                  th:errorclass="is-invalid"
+                />
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('price')}"
+                  th:errors="*{price}"
+                ></div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Stock Quantity</label>
+                <input
+                  type="number"
+                  th:field="*{stock}"
+                  class="form-control"
+                  th:errorclass="is-invalid"
+                />
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('stock')}"
+                  th:errors="*{stock}"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button type="submit" class="btn btn-success w-100">
+                Save to Warehouse
+              </button>
+              <a href="/inventory" class="btn btn-link w-100 mt-2 text-muted"
+                >Cancel</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

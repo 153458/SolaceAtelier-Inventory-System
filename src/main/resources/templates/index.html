@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/layout :: header}"></head>
+  <body>
+    <div th:replace="~{fragments/layout :: navbar}"></div>
+
+    <div class="container text-center mt-5">
+      <h1 class="display-4">Warehouse Management System</h1>
+      <p class="lead">
+        Internal tool for Solace Atelier Clothing & Fashion Brand
+      </p>
+      <hr />
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h3>View Stock</h3>
+            <p>Check current inventory levels.</p>
+            <a href="/inventory" class="btn btn-primary">Go to Inventory</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h3>Add Item</h3>
+            <p>Register new warehouse arrivals.</p>
+            <a href="/inventory/add" class="btn btn-success">New Product</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-3">
+            <h3>Analytics</h3>
+            <p>Distribution center data.</p>
+            <a href="/locations" class="btn btn-secondary">Locations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
