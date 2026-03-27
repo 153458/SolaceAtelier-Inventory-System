@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:replace="~{fragments/layout :: header}"></head>
   <body>
     <div th:replace="~{fragments/layout :: navbar}"></div>
@@ -7,7 +8,8 @@
     <div class="container mt-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Warehouse Inventory</h2>
-        <a href="/inventory/add" class="btn btn-success">+ Add New Product</a>
+       <a href="/inventory/add" class="btn btn-success"
+   sec:authorize="hasAnyRole('ADMIN','STAFF')">+ Add New Product</a>
       </div>
 
       <form th:action="@{/inventory}" method="get" class="row g-3 mb-4">

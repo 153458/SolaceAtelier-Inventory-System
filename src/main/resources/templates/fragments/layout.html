@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:fragment="header">
     <meta charset="UTF-8" />
     <title>Solace Atelier | WarehouseOS</title>
@@ -25,11 +26,24 @@
     >
       <div class="container">
         <a class="navbar-brand" href="/">SOLACE ATELIER</a>
+
         <div class="navbar-nav">
           <a class="nav-link" href="/">Home</a>
           <a class="nav-link" href="/inventory">Inventory</a>
           <a class="nav-link" href="/about">About</a>
           <a class="nav-link" href="/locations">Locations</a>
+
+          <a class="nav-link" href="/register" sec:authorize="isAnonymous()">Register</a>
+          <a class="nav-link" href="/login" sec:authorize="isAnonymous()">Login</a>
+
+          <a class="nav-link" href="/inventory/add"
+             sec:authorize="hasAnyRole('ADMIN','STAFF')">Add Product</a>
+
+          <form th:action="@{/logout}" method="post" class="d-inline" sec:authorize="isAuthenticated()">
+            <button type="submit" class="btn btn-link nav-link" style="display:inline; padding: 0; border:none; background:none;">
+              Logout
+            </button>
+          </form>
         </div>
       </div>
     </nav>
